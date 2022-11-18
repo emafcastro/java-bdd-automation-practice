@@ -19,6 +19,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class FirstTest {
 
+
+    // TODO: Transform this test in BDD
+
     @Test
     public void eightComponents() {
         FrameworkProperties frameworkProperties = new FrameworkProperties();

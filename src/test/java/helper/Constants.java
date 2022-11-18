@@ -9,4 +9,7 @@ public class Constants {
     public static final String CHROME = "Chrome";
     public static final String FIREFOX = "Firefox";
     public static final int SHORT_TIMEOUT = 5;
+
+    public static final int LARGE_TIMEOUT = 30;
+    public static final String URL = "https://magento.softwaretestingboard.com/";
 }

@@ -47,6 +47,9 @@ public class HomePage {
     @FindBy(id = "top-cart-btn-checkout")
     private WebElement cartPopupProceedToCheckoutButton;
 
+    @FindBy(xpath = "//header//a[contains(text(),'Sign In')]")
+    private WebElement signInLink;
+
     public void addProductToCart(){
         firstProductSize.click();
         firstProductColor.click();
@@ -58,5 +61,9 @@ public class HomePage {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(Constants.SHORT_TIMEOUT));
         wait.until(ExpectedConditions.visibilityOf(confirmationMessage));
         System.out.println(confirmationMessage.getText());
+    }
+
+    public void clickSignIn(){
+        signInLink.click();
     }
 }
