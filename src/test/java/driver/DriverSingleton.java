@@ -18,7 +18,6 @@ public class DriverSingleton {
         DriverStrategy driverStrategy = DriverStrategyImplementer.chooseStrategy(strategy);
         assert driverStrategy != null;
         driver = driverStrategy.setStrategy();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         driver.manage().window().maximize();
 
         return driver;

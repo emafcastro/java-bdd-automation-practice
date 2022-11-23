@@ -9,14 +9,17 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utils.Utilities;
 
 import java.time.Duration;
 
 public class HomePage {
     private WebDriver driver;
+    private Utilities utilities;
 
     public HomePage(){
         driver = DriverSingleton.getDriver();
+        utilities = new Utilities();
         PageFactory.initElements(driver, this);
     }
 
@@ -51,19 +54,32 @@ public class HomePage {
     private WebElement signInLink;
 
     public void addProductToCart(){
-        firstProductSize.click();
-        firstProductColor.click();
+        utilities.waitForElement(firstProductSize).click();
+        utilities.waitForElement(firstProductColor).click();
 
         Actions hover = new Actions(driver);
         hover.moveToElement(firstProduct).build().perform();
         firstProductAddToCartButton.click();
-
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(Constants.SHORT_TIMEOUT));
-        wait.until(ExpectedConditions.visibilityOf(confirmationMessage));
-        System.out.println(confirmationMessage.getText());
     }
 
     public void clickSignIn(){
         signInLink.click();
+    }
+
+    public String getAddedProductConfirmationMessage(){
+        var message = utilities.waitForStaleElement(confirmationMessage);
+        return message.getText();
+    }
+
+    public String getFirstProductName(){
+        return firstProductName.getText();
+    }
+
+    public void clickCartLink(){
+        cartLink.click();
+    }
+
+    public String getCartProductName(){
+        return utilities.waitForElement(cartPopupProductName).getText();
     }
 }
